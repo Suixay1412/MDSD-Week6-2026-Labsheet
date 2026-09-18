@@ -400,9 +400,8 @@ ElevatedButton(
 จากนั้นรันแอป กดปุ่มนี้ แล้วดูผลลัพธ์ใน Debug Console (ปุ่มนี้เป็นแค่ปุ่มทดลองชั่วคราว ไม่ต้องมีการจัดการ Loading/Error ใด ๆ ต่างจากปุ่ม "ค้นหา" หลักของหน้า)
 
 > ✅ **Checkpoint 3.1** ถ่ายภาพหน้าจอ Debug Console ที่แสดง Status Code (ควรเป็น `201 Created`) พร้อม Response Body 
-```text
-บันทึกรูปและคำตอบที่นี่
-```
+
+<img width="1917" height="1018" alt="image" src="https://github.com/user-attachments/assets/c2b1da70-ad8c-4419-a664-5902bfb73095" />
 
 ### ขั้นตอนที่ 3.2 — 🧠 คิดเอง/ออกแบบเอง
 
@@ -427,9 +426,8 @@ Future<void> updateDemoPost() async {
 
 > ✅ **Checkpoint 3.2** ถ่ายภาพหน้าจอ Debug Console ที่แสดง Status Code ของการเรียก PUT (ควรเป็น `200 OK`) 
 
-```text
-บันทึกรูปและคำตอบที่นี่
-```
+<img width="1917" height="1018" alt="image" src="https://github.com/user-attachments/assets/683cd163-7e23-442a-b70a-ed219ff043fc" />
+
 ---
 
 ## ส่วนที่ 4: ใช้ AI ช่วย Generate โค้ด API Client
@@ -478,13 +476,13 @@ GET https://fakestoreapi.com/products
 ไม่ว่าจะเลือกแบบไหน เป้าหมายคือต้องเห็น **ผลลัพธ์จริงจาก Fake Store API** ปรากฏขึ้นมา  ถ้ารันแล้วเจอ error หรือโค้ดจาก Gemini ผิดพลาด (เช่น import ขาด, ชื่อ field ไม่ตรงกับ JSON จริง) ให้จดบันทึกข้อความ error และวิธีแก้ไขไว้ในด้านล่าง
 
 ```text
-บันทึก error และการแก้ไขที่นี่
+ไม่พบ error ระหว่างการทดสอบ — โค้ดจาก Gemini ทำงานได้ถูกต้องตั้งแต่รอบแรก 
+field ต่างๆ (id, title, price, description, category, image) ตรงกับโครงสร้าง JSON จริงของ Fake Store API ทุกฟิลด์
 ```
 
 > ✅ **Checkpoint 4.2** ถ่ายภาพหน้าจอ Debug Console ที่แสดงผลลัพธ์จริงจากการเรียก `fetchAiProducts()` (เช่น รายการสินค้าที่ print ออกมา) 
-```text
-บันทึกรูปที่นี่
-```
+
+<img width="1917" height="1020" alt="image" src="https://github.com/user-attachments/assets/38fb5c70-8af9-4520-88ae-fc42be963269" />
 
 ---
 
@@ -543,9 +541,9 @@ Future<Weather> fetchWeatherWithDio(String city) async {
 2. รูปแบบการเขียน query parameters (`queryParameters: {...}`) ต่างจากการต่อ string URL เองแบบที่ทำใน `WeatherService` (ขั้นตอนที่ 2.3) 
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ Debug Console ที่แสดงผลลัพธ์จริงจากการเรียก `fetchWeatherWithDio()` (ค่าทั้ง 4 ฟิลด์ของ `Weather` ที่ print ออกมา หรือแสดงผลบนหน้าจอถ้าเลือกแบบที่ 2)
-```text
-บันทึกรูปที่นี่
-```
+
+<img width="682" height="82" alt="Screenshot 2026-09-18 151010" src="https://github.com/user-attachments/assets/c91acbc2-a045-4da2-8deb-b912323c834f" />
+
 ### ขั้นตอนที่ 5.4 — 🧠 คิดเอง/ออกแบบเอง
 
 `DioException` มีหลายชนิด (`DioExceptionType`) แต่โค้ดในขั้นตอนที่ 5.2 จัดการเฉพาะ `connectionTimeout` ด้านล่างเป็นตัวอย่างการเพิ่มเงื่อนไขให้อีก 1 ชนิด (`badResponse`) ให้ดูเป็นแนวทาง จากนั้นให้เพิ่มเงื่อนไข `else if` อีกอย่างน้อย 1 ชนิดด้วยตัวเอง โดยเลือกจาก `DioExceptionType.receiveTimeout` หรือ `DioExceptionType.connectionError` (ห้ามซ้ำกับ `badResponse` ที่ให้เป็นตัวอย่างแล้ว) พร้อมข้อความแจ้งเตือนภาษาไทยที่เหมาะสมกับสาเหตุนั้นโดยเฉพาะ (ค้นคว้าความหมายของแต่ละชนิดได้จากเอกสารของแพ็กเกจ `dio` บน pub.dev)
@@ -567,13 +565,56 @@ Future<Weather> fetchWeatherWithDio(String city) async {
 > ✅ **Checkpoint 5.2** เปรียบเทียบสั้น ๆ ระหว่าง `http` กับ `dio` อย่างน้อย 3 ประเด็น โดยอ้างอิงจากสิ่งที่สังเกตได้จริงตอนทดลองในขั้นตอนที่ 5.3 เช่น การแปลง JSON อัตโนมัติ, การกำหนด Query Parameters, และรูปแบบการจัดการ Exception (`DioException` เทียบกับการดักจับหลายชนิดแยกกันแบบ `http`)
 
 ```text
-บันทึกคำตอบที่นี่
+เปรียบเทียบ http กับ dio จากการทดลองจริงในขั้นตอนที่ 5.3:
+
+1. การแปลง JSON: ตอนใช้ http ใน WeatherService ต้องเรียก jsonDecode(response.body) 
+   เองก่อนส่งเข้า Weather.fromJson() แต่ตอนใช้ dio ใน fetchWeatherWithDio() 
+   ไม่ต้องเรียก jsonDecode เลย เพราะ dio แปลง JSON ให้เป็น Map<String, dynamic> 
+   อัตโนมัติผ่าน response.data ทำให้โค้ดสั้นลงหนึ่งขั้นตอน
+
+2. การกำหนด Query Parameters: ตอนใช้ http ต้องต่อ string URL เองด้วยมือ เช่น
+   '$_baseUrl?q=$city&appid=$apiKey&units=metric&lang=th' ซึ่งเสี่ยงพิมพ์ผิดหรือ
+   ลืม encode อักขระพิเศษ ส่วน dio ใช้พารามิเตอร์ queryParameters: {'q': city, 
+   'appid': apiKey, ...} เป็น Map แยกชัดเจน อ่านง่ายกว่าและ dio จัดการ URL 
+   encoding ให้อัตโนมัติ
+
+3. การจัดการ Exception: http ต้องเขียน catch แยกหลายชนิดตามลำดับ คือ 
+   on TimeoutException, on http.ClientException, on FormatException 
+   แต่ละชนิดเป็นคนละ catch block ส่วน dio รวม error ทุกชนิดที่เกิดจากการเรียก
+   เครือข่ายไว้เป็น DioException ตัวเดียว แล้วแยกย่อยด้วยการเช็ก e.type 
+   ภายใน catch block เดียว (เช่น connectionTimeout, badResponse, 
+   connectionError) ทำให้โค้ดกระชับกว่าแต่ต้องจำชนิดของ DioExceptionType เอง
+
+สรุป: dio ลดโค้ดซ้ำซ้อนในการแปลง JSON และการต่อ URL ได้มาก แต่ http เป็น
+แพ็กเกจพื้นฐานที่ Flutter ดูแลเองโดยตรง ไม่ต้องเพิ่ม dependency ภายนอก
 ```
 >
 > ✅ **Checkpoint 5.3** แสดงโค้ดเงื่อนไข `DioExceptionType` เพิ่มเติมที่เขียนเองในขั้นตอนที่ 5.4 
 
 ```text
-บันทึกคำตอบที่นี่
+โค้ดเงื่อนไข DioExceptionType ที่เพิ่มเองในขั้นตอนที่ 5.4:
+
+} on DioException catch (e) {
+  if (e.type == DioExceptionType.connectionTimeout) {
+    throw Exception('การเชื่อมต่อหมดเวลา กรุณาลองใหม่อีกครั้ง');
+  } else if (e.type == DioExceptionType.badResponse) {
+    throw Exception('เซิร์ฟเวอร์ตอบกลับผิดพลาด (รหัส ${e.response?.statusCode})');
+  } else if (e.type == DioExceptionType.connectionError) {
+    // เพิ่มเอง: กรณีไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้เลย เช่น ไม่มีอินเทอร์เน็ต 
+    // หรือ DNS หาเซิร์ฟเวอร์ไม่เจอ ต่างจาก connectionTimeout ตรงที่กรณีนี้
+    // เชื่อมต่อไม่สำเร็จตั้งแต่แรก ไม่ใช่รอนานเกินเวลาที่กำหนด
+    throw Exception('ไม่สามารถเชื่อมต่ออินเทอร์เน็ตได้ กรุณาตรวจสอบการเชื่อมต่อของคุณ');
+  }
+  throw Exception('เกิดข้อผิดพลาด: ${e.message}');
+}
+
+ทดสอบจริงโดยปิดอินเทอร์เน็ตของเครื่องแล้วเรียก fetchWeatherWithDio() พบว่า
+บน Flutter Web ระบบมักจัดประเภทเป็น connectionTimeout ก่อนเสมอ (ขึ้นข้อความ
+"การเชื่อมต่อหมดเวลา") เนื่องจากพฤติกรรมของเบราว์เซอร์เมื่อไม่มีเน็ตจะรอจนครบ
+เวลาที่กำหนดก่อนแทนที่จะแจ้ง error ทันที ทำให้ branch connectionError ที่เขียน
+เองในกรณีนี้ยังไม่ถูกเรียกใช้งานโดยตรงระหว่างทดสอบ แต่โค้ดเงื่อนไขได้เตรียมไว้
+รองรับกรณีที่ dio จำแนกเป็น connectionError เช่นกัน (เช่น อาจเกิดขึ้นบนแพลตฟอร์ม 
+mobile/desktop ที่ตรวจจับการตัดการเชื่อมต่อได้เร็วกว่า)
 ```
 ---
 
